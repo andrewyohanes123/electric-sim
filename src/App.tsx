@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useMemo, FC, ReactElement } from 'react'
+import { Elements } from 'react-flow-renderer';
 import './App.css';
+import FlowCanvas from './components/FlowCanvas';
 
-function App() {
+const App: FC = (): ReactElement => {
+  const elements: Elements = useMemo<Elements>(() => ([
+    {
+      id: '1',
+      type: 'input', // input node
+      data: { label: 'Input Node' },
+      position: { x: 250, y: 25 },
+    },
+    // default node
+    {
+      id: '2',
+      // you can also pass a React component as a label
+      data: { label: <div>Default Node</div> },
+      position: { x: 100, y: 125 },
+    },
+    {
+      id: '3',
+      type: 'output', // output node
+      data: { label: 'Output Node' },
+      position: { x: 250, y: 250 },
+    },
+    // animated edge
+    { id: 'e1-2', source: '1', target: '2', animated: true, type: 'step', style: {color: 'red', border: '1px solid red', background: 'red'} },
+    { id: 'e2-3', source: '2', target: '3' },
+  ]), []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <FlowCanvas elements={elements} />
     </div>
   );
 }
