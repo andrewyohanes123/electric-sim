@@ -1,5 +1,6 @@
-import { FC, ReactElement } from "react"
-import ReactFlow, { Elements, Background } from "react-flow-renderer"
+import { FC, ReactElement, useMemo } from "react"
+import ReactFlow, { Elements, Background, NodeTypesType } from "react-flow-renderer"
+import { PowerSource, ElectricalSwitch } from "./electricals";
 import FluidContainer from "./FluidContainer"
 
 interface props {
@@ -7,9 +8,14 @@ interface props {
 }
 
 const FlowCanvas: FC<props> = ({ elements }): ReactElement => {
+  const nodeTypes: NodeTypesType = useMemo((): NodeTypesType => ({
+    powerSource: PowerSource,
+    electricalSwitch: ElectricalSwitch
+  }), []);
+
   return (
     <FluidContainer>
-      <ReactFlow snapToGrid snapGrid={[15, 15]} elements={elements} >
+      <ReactFlow snapToGrid snapGrid={[15, 15]} nodeTypes={nodeTypes} elements={elements} >
         <Background
           // @ts-ignore
           variant="grids"

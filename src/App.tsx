@@ -7,7 +7,7 @@ const App: FC = (): ReactElement => {
   const elements: Elements = useMemo<Elements>(() => ([
     {
       id: '1',
-      type: 'input', // input node
+      type: 'powerSource', // input node
       data: { label: 'Input Node' },
       position: { x: 250, y: 25 },
     },
@@ -17,6 +17,7 @@ const App: FC = (): ReactElement => {
       // you can also pass a React component as a label
       data: { label: <div>Default Node</div> },
       position: { x: 100, y: 125 },
+      type: 'electricalSwitch'
     },
     {
       id: '3',
@@ -25,8 +26,8 @@ const App: FC = (): ReactElement => {
       position: { x: 250, y: 250 },
     },
     // animated edge
-    { id: 'e1-2', source: '1', target: '2', animated: true, type: 'step', style: {color: 'red', border: '1px solid red', background: 'red'} },
-    { id: 'e2-3', source: '2', target: '3' },
+    // { id: 'e1-2', source: '1', target: '2', animated: true, type: 'step', style: {color: 'red', border: '1px solid red', background: 'red'} },
+    // { id: 'e2-3', source: '2', target: '3' },
   ]), []);
 
   return (
