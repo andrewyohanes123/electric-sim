@@ -1,6 +1,6 @@
 import { FC, ReactElement, useMemo } from "react"
 import ReactFlow, { Elements, Background, NodeTypesType } from "react-flow-renderer"
-import { PowerSource, ElectricalSwitch } from "./electricals";
+import { PowerSource, ElectricalSwitch, Output } from "./electricals";
 import FluidContainer from "./FluidContainer"
 
 interface props {
@@ -10,7 +10,8 @@ interface props {
 const FlowCanvas: FC<props> = ({ elements }): ReactElement => {
   const nodeTypes: NodeTypesType = useMemo((): NodeTypesType => ({
     powerSource: PowerSource,
-    electricalSwitch: ElectricalSwitch
+    electricalSwitch: ElectricalSwitch,
+    output: Output
   }), []);
 
   return (

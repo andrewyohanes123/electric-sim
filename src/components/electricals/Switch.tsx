@@ -1,7 +1,16 @@
-import { FC, ReactElement } from "react"
+import { FC, ReactElement, memo } from "react"
+import { Switch as AntSwitch } from "antd"
 import { Handle, Position } from "react-flow-renderer"
 
-export const Switch: FC = (): ReactElement => {
+interface props {
+  data: {
+    on: boolean;
+    onChange: (value: boolean) => void;
+  }
+}
+
+export const Switch: FC<props> = memo(({ data: { onChange, on } }): ReactElement => {
+
   return (
     <div style={{
       background: '#9CA8B3',
@@ -9,6 +18,7 @@ export const Switch: FC = (): ReactElement => {
       padding: 10,
     }}>
       <p>Switch</p>
+      <AntSwitch checked={on} onChange={onChange} />
       <Handle
         type="target"
         id="input"
@@ -23,4 +33,4 @@ export const Switch: FC = (): ReactElement => {
       />
     </div>
   )
-}
+});
