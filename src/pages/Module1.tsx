@@ -5,6 +5,8 @@ import FlowCanvas from "../components/FlowCanvas";
 const Module1 = () => {
   const [state, toggleState] = useState<boolean>(false);
 
+  document.title = "Modul 1"
+
   const elements: Elements = useMemo<Elements>(() => ([
     {
       id: '1',
