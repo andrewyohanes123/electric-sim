@@ -1,6 +1,6 @@
+import { Typography } from "antd"
 import { FC, ReactElement, memo } from "react"
 import { Handle, Position } from "react-flow-renderer"
-import { Typography } from 'antd'
 import { ElectricalNode } from "../Node"
 import { OutputIndicator } from "../OutputIndicator"
 
@@ -11,7 +11,7 @@ interface props {
   }
 }
 
-export const Output: FC<props> = memo(({ data: { on, label } }): ReactElement => {
+export const Outlet: FC<props> = memo(({ data: { on, label } }): ReactElement => {
   return (
     <ElectricalNode>
       <OutputIndicator indicator={on} />
@@ -19,16 +19,29 @@ export const Output: FC<props> = memo(({ data: { on, label } }): ReactElement =>
       <Typography.Text style={{display: 'block'}}>{label}</Typography.Text>
       <Handle
         type="source"
-        position={Position.Left}
-        id="N2"
-        style={{ top: '40%', borderRadius: 0 }}
+        position={Position.Top}
+        id="N"
+        style={{ left: '25%', borderRadius: 0 }}
       />
       <Handle
         type="target"
-        position={Position.Left}
-        id="L2"
-        style={{ top: '60%', borderRadius: 0 }}
+        position={Position.Top}
+        id="PE"
+        style={{ left: '50%', borderRadius: 0 }}
+      />
+      <Handle
+        type="target"
+        position={Position.Top}
+        id="L"
+        style={{ left: '75%', borderRadius: 0 }}
       />
     </ElectricalNode>
   )
 })
+
+Outlet.defaultProps = {
+  data: {
+    on: false,
+    label: 'Outlet Listrik'
+  }
+}

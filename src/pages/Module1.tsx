@@ -32,9 +32,11 @@ const Module1 = () => {
     {
       id: 'power-to-switch', source: '1', animated: true, type: 'step', target: '2',
       sourceHandle: 'L1',
+      style: {stroke: 'red', strokeWidth: 2}
     },
     {
       id: 'switch-to-output', source: '2', animated: state, type: 'step', target: '3'
+      ,style: {stroke: 'blue', strokeWidth: state ? 2 : 0.75}
     },
     {
       id: 'output-to-power', source: '3', animated: state, type: 'step', target: '1',

@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
 
 export const ElectricalNode = styled.div({
-  background: '#9CA8B3',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  background: '#74b9ff',
   color: '#FFF',
-  padding: 10,
+  padding: 15,
+  borderRadius: 12,
 })

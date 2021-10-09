@@ -1,6 +1,6 @@
 import { FC, ReactElement, useMemo } from "react"
 import ReactFlow, { Elements, Background, NodeTypesType } from "react-flow-renderer"
-import { PowerSource, ElectricalSwitch, Output } from "./electricals";
+import { PowerSource, ElectricalSwitch, Output, Outlet } from "./electricals";
 import FluidContainer from "./FluidContainer"
 
 interface props {
@@ -11,15 +11,16 @@ const FlowCanvas: FC<props> = ({ elements }): ReactElement => {
   const nodeTypes: NodeTypesType = useMemo((): NodeTypesType => ({
     powerSource: PowerSource,
     electricalSwitch: ElectricalSwitch,
-    output: Output
+    output: Output,
+    outlet: Outlet
   }), []);
 
   return (
     <FluidContainer>
-      <ReactFlow snapToGrid snapGrid={[15, 15]} nodeTypes={nodeTypes} elements={elements} >
+      <ReactFlow nodesDraggable={false} snapToGrid snapGrid={[15, 15]} nodeTypes={nodeTypes} elements={elements} >
         <Background
           // @ts-ignore
-          variant="grids"
+          variant="lines"
         />
       </ReactFlow>
     </FluidContainer>

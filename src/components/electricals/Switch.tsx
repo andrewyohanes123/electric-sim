@@ -1,6 +1,7 @@
 import { FC, ReactElement, memo } from "react"
 import { Switch as AntSwitch } from "antd"
 import { Handle, Position } from "react-flow-renderer"
+import { ElectricalNode } from "../Node"
 
 interface props {
   data: {
@@ -12,12 +13,8 @@ interface props {
 export const Switch: FC<props> = memo(({ data: { onChange, on } }): ReactElement => {
 
   return (
-    <div style={{
-      background: '#9CA8B3',
-      color: '#FFF',
-      padding: 10,
-    }}>
-      <p>Switch</p>
+    <ElectricalNode>
+      <p>Saklar</p>
       <AntSwitch checked={on} onChange={onChange} />
       <Handle
         type="target"
@@ -31,6 +28,6 @@ export const Switch: FC<props> = memo(({ data: { onChange, on } }): ReactElement
         position={Position.Right}
         style={{ top: '50%', borderRadius: 0 }}
       />
-    </div>
+    </ElectricalNode>
   )
 });

@@ -9,5 +9,6 @@ export const OutputIndicator = styled.div<props>(({ indicator }) => ({
   borderRadius: '50%',
   background: indicator ? '#e74c3c' : '#c0392b',
   width: 35,
-  height: 35
+  height: 35,
+  margin: '2px auto'
 }))
