@@ -2,7 +2,7 @@ import { FC, ReactElement, useMemo, useState } from "react"
 import { Elements } from "react-flow-renderer"
 import FlowCanvas from "../components/FlowCanvas"
 
-const Module3: FC = (): ReactElement => {
+const Module4: FC = (): ReactElement => {
   const [state, toggleState] = useState<boolean>(false);
   const [state2, toggleState2] = useState<boolean>(false);
 
@@ -82,4 +82,4 @@ const Module3: FC = (): ReactElement => {
   )
 }
 
-export default Module3
+export default Module4

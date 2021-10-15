@@ -7,14 +7,15 @@ interface props {
   data: {
     on: boolean;
     onChange: (value: boolean) => void;
+    label?: string;
   }
 }
 
-export const Switch: FC<props> = memo(({ data: { onChange, on } }): ReactElement => {
+export const Switch: FC<props> = memo(({ data: { onChange, on, label } }): ReactElement => {
 
   return (
     <ElectricalNode>
-      <p>Saklar</p>
+      <p>{label ?? 'Saklar'}</p>
       <AntSwitch checked={on} onChange={onChange} />
       <Handle
         type="target"

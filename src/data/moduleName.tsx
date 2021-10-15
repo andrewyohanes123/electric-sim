@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Module1 from "../pages/Module1";
 import Module2 from "../pages/Module2";
 import Module3 from "../pages/Module3";
+import Module4 from "../pages/Module4";
 
 export interface ModulePageInterface {
   name: string;
@@ -24,5 +25,10 @@ export const pageModules: ModulePageInterface[] = [
     name: 'Modul 3',
     description: 'RANGKAIAN DUA ARAH DENGAN KONTAK UTAMA',
     component: <Module3 />
+  },
+  {
+    name: 'Modul 4',
+    description: 'PENGATURAN SAKLAR SILANG DENGAN KOTAK KONTAK',
+    component: <Module4 />
   },
 ]
