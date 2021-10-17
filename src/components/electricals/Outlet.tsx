@@ -16,11 +16,11 @@ export const Outlet: FC<props> = memo(({ data: { on, label } }): ReactElement =>
     <ElectricalNode>
       <OutputIndicator indicator={on} />
       {on ? 'Nyala' : 'Mati'}
-      <Typography.Text style={{display: 'block'}}>{label}</Typography.Text>
+      <Typography.Text style={{ display: 'block' }}>{label}</Typography.Text>
       <Handle
-        type="source"
+        type="target"
         position={Position.Top}
-        id="N"
+        id="L"
         style={{ left: '25%', borderRadius: 0 }}
       />
       <Handle
@@ -30,9 +30,15 @@ export const Outlet: FC<props> = memo(({ data: { on, label } }): ReactElement =>
         style={{ left: '50%', borderRadius: 0 }}
       />
       <Handle
+        type="source"
+        position={Position.Top}
+        id="N"
+        style={{ left: '75%', borderRadius: 0 }}
+      />
+      <Handle
         type="target"
         position={Position.Top}
-        id="L"
+        id="N"
         style={{ left: '75%', borderRadius: 0 }}
       />
     </ElectricalNode>

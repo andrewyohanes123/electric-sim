@@ -5,75 +5,148 @@ import FlowCanvas from "../components/FlowCanvas"
 const Module4: FC = (): ReactElement => {
   const [state, toggleState] = useState<boolean>(false);
   const [state2, toggleState2] = useState<boolean>(false);
+  const [state3, toggleState3] = useState<boolean>(false);
 
-  document.title = "Modul 3"
+  // document.title = "Modul 4"
   const elements: Elements = useMemo<Elements>(() => ([
     {
       id: '1',
       type: 'powerSource', // input node
       data: { label: 'Input Node' },
       position: { x: 250, y: 50 },
+    },  
+    {
+      id: 'x1',
+      type: 'outlet', // input node
+      data: { label: 'X4', on: true },
+      position: { x: 750, y: 450 },
+    },  
+    {
+      id: 'q1',
+      type: 'twoWaySwitch', // input node
+      data: { label: 'Q1', on: state, onChange: toggleState },
+      position: { x: 400, y: 250 },
     },
     {
-      id: '2',
-      // you can also pass a React component as a label
-      data: { on: true, label: 'Outlet Listrik' },
-      position: { x: 500, y: 300 },
-      type: 'outlet',
+      id: 'q2',
+      type: 'twoWaySwitch', // input node
+      data: { label: 'Q2', multipleInput: true, on: state2, onChange: toggleState2 },
+      position: { x: 560, y: 250 },
     },
     {
-      id: '3',
-      // you can also pass a React component as a label
-      data: { on: state, onChange: toggleState, label: 'Q1' },
-      position: { x: 700, y: 200 },
-      type: 'electricalSwitch',
+      id: 'q3',
+      type: 'twoWaySwitch', // input node
+      data: { label: 'Q3', on: state3, onChange: toggleState3, multipleInput: true, singleOutput: true },
+      position: { x: 900, y: 250 },
     },
     {
-      id: '4',
-      // you can also pass a React component as a label
-      data: { on: state || state2, label: 'E1' },
-      position: { x: 1050, y: 20 },
-      type: 'output',
+      id: 'output',
+      type: 'output', // input node
+      data: { label: 'E1', on: (!state && !state2 && state3) || (state && state2 && !state3) || (!state && state2 && !state3) || (state && !state2 && state3) },
+      position: { x: 1200, y: 13 },
     },
+    // handles
     {
-      id: '5',
-      // you can also pass a React component as a label
-      data: { on: state2, onChange: toggleState2, label: 'Q2' },
-      position: { x: 900, y: 200 },
-      type: 'electricalSwitch',
-    },
-    {
-      id: 'power-to-outlet', source: '1', animated: true, type: 'step', target: '2',
+      id: 'power-to-switch',
+      target: 'q1',
+      type: 'step',
+      source: '1',
       sourceHandle: 'L1',
-      label: "L1",
-      style: { stroke: 'blue', strokeWidth: 2 }
+      style: {stroke: 'red'},
+      animated: true
     },
     {
-      id: 'power-to-outlet-2', source: '1', animated: true, type: 'step', target: '2',
-      sourceHandle: 'PE',
+      id: 'power-to-outlet-1',
+      target: 'x1',
+      type: 'step',
+      source: '1',
+      sourceHandle: 'L1',
       targetHandle: 'L',
-      label: "PE",
-      style: { stroke: 'brown', strokeWidth: 2 }
+      style: {stroke: 'red'},
+      animated: true
     },
     {
-      id: 'outlet-to-switch', source: '2', animated: true, type: 'step', target: '3',
-      style: { stroke: 'red', strokeWidth: 2 }
-    },
-    {
-      id: 'switch-1-to-switch-2', source: '3', animated: state || state2, type: 'step', target: '5',
-      targetHandle: 'input',
-      style: { stroke: 'black' }
-    },
-    {
-      id: 'switch-2-to-output', source: '5', animated: state || state2, type: 'step', target: '4',
-      targetHandle: 'L2',
-      style: { stroke: 'blue' }
-    },
-    {
-      id: 'output-to-power', source: '4', animated: state || state2, type: 'step', target: '1',
+      id: 'power-to-outlet-2',
+      target: 'x1',
+      type: 'step',
+      source: '1',
+      sourceHandle: 'N',
       targetHandle: 'N',
+      style: {stroke: 'black'},
+      animated: true
     },
-  ]), [state, state2]);
+    {
+      id: 'power-to-outlet-3',
+      target: 'x1',
+      type: 'step',
+      source: '1',
+      sourceHandle: 'PE',
+      targetHandle: 'PE',
+      style: {stroke: 'brown'},
+      animated: true
+    },
+    {
+      id: 'q1-to-q2',
+      target: 'q2',
+      type: 'step',
+      source: 'q1',
+      sourceHandle: 'output1',
+      targetHandle: 'input1',
+      style: {stroke: 'red', strokeWidth: 2},
+      animated: !state
+    },
+    {
+      id: 'q1-to-q2-2',
+      target: 'q2',
+      type: 'step',
+      source: 'q1',
+      sourceHandle: 'output2',
+      targetHandle: 'input2',
+      style: {stroke: 'blue', strokeWidth: 2},
+      animated: state
+    },
+    {
+      id: 'q2-to-q3-1',
+      target: 'q3',
+      type: 'step',
+      source: 'q2',
+      sourceHandle: 'output1',
+      targetHandle: 'input1',
+      style: {stroke: '#10ac84', strokeWidth: 2},
+      animated: !state2
+    },
+    {
+      id: 'q2-to-q3-2',
+      target: 'q3',
+      type: 'step',
+      source: 'q2',
+      sourceHandle: 'output2',
+      targetHandle: 'input2',
+      style: {stroke: '#341f97', strokeWidth: 2},
+      animated: state2
+    },
+    {
+      id: 'q3-to-output',
+      target: 'output',
+      type: 'step',
+      source: 'q3',
+      sourceHandle: 'output1',
+      targetHandle: 'L2',
+      style: {stroke: '#341f97', strokeWidth: 2},
+      animated: (!state && !state2 && state3) || (state && state2 && !state3) || (!state && state2 && !state3) || (state && !state2 && state3)
+    },
+    {
+      id: 'output-to-power',
+      target: '1',
+      type: 'step',
+      source: 'output',
+      sourceHandle: 'N2',
+      targetHandle: 'N',
+      style: {stroke: 'black', strokeWidth: 2},
+      animated: true,
+      label: "N",
+    },
+  ]), [state, state2, state3]);
 
   return (
     <div>

@@ -1,10 +1,10 @@
-import { FC, ReactElement } from "react"
-import { Button, Divider, Space, Typography } from "antd"
+import { FC, ReactElement, ReactNode } from "react"
+import { Button, Divider, Space } from "antd"
 import { LeftOutlined } from '@ant-design/icons'
 import { TopBar } from "./TopBar"
 
 interface props {
-  title?: string;
+  title?: ReactNode;
   onBack?: () => void;
 }
 
@@ -13,7 +13,7 @@ const Navbar: FC<props> = ({ title, onBack }): ReactElement => {
     <TopBar>
       <Space size={2} split={<Divider type="vertical" />}>
         <Button onClick={onBack} size="small" icon={<LeftOutlined />} />
-        {typeof title !== 'undefined' && <Typography.Text>{title}</Typography.Text>}
+        {typeof title !== 'undefined' && <>{title}</>}
       </Space>
     </TopBar>
   )
