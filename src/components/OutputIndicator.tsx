@@ -12,3 +12,12 @@ export const OutputIndicator = styled.div<props>(({ indicator }) => ({
   height: 35,
   margin: '2px auto'
 }))
+
+export const NeonOutputIndicator = styled.div<props>(({ indicator }) => ({
+  // padding: 15,
+  borderRadius: 10,
+  background: indicator ? 'white' : '#dedede',
+  width: 170,
+  height: 25,
+  margin: '2px auto'
+}));

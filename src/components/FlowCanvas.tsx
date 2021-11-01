@@ -1,6 +1,6 @@
 import { FC, ReactElement, useMemo } from "react"
 import ReactFlow, { Elements, Background, NodeTypesType } from "react-flow-renderer"
-import { PowerSource, ElectricalSwitch, Output, Outlet, TwoWaySwitch, OutputDimmer, Dimmer } from "./electricals";
+import { PowerSource, ElectricalSwitch, Output, Outlet, TwoWaySwitch, OutputDimmer, Dimmer, NeonOutput, Fuse, Capacitor, FillamentOutput } from "./electricals";
 import FluidContainer from "./FluidContainer"
 
 interface props {
@@ -15,7 +15,11 @@ const FlowCanvas: FC<props> = ({ elements }): ReactElement => {
     outlet: Outlet,
     twoWaySwitch: TwoWaySwitch,
     outputDimmer: OutputDimmer,
-    dimmer: Dimmer
+    dimmer: Dimmer,
+    neonOutput: NeonOutput,
+    fuse: Fuse,
+    capacitor: Capacitor,
+    fillamentOutput: FillamentOutput
   }), []);
 
   return (
