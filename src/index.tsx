@@ -4,12 +4,18 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalModelsProvider } from './contexts/ModelsContext';
+import { UserProvider } from './contexts/UserContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <GlobalModelsProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </UserProvider>
+    </GlobalModelsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
